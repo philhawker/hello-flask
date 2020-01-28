@@ -26,7 +26,7 @@ class GuideSchema(ma.Schema):
         fields = ('title', 'content')
         
 guide_schema = GuideSchema()
-guides_schema = GuideSchema(many=True)
+guides_schema = GuideSchema(many=True)   # Schema is a formatting tool from marshmallow. They act as templates for database structure
 
 
 # Endpoint to create a new guide
