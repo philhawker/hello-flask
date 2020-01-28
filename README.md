@@ -27,3 +27,31 @@ $ from app import db
 $ db.create_all()
 ```
 this will create a app.sqlite file, which is the database file
+
+
+### HOW TO RUN QUERIES
+Post a guide
+```
+Route: localhost:5000/guide
+Method: POST
+Body: 
+{
+    "title": "updated new title",
+    "content": "my new content"
+}
+```
+
+Get all guides
+```
+Route: localhost:5000/guides
+Method: GET
+```
+
+Get a single guide
+```
+id is dynamic. input desired at the end of html route (localhost:5000/guide/<id>)
+Method: PUT
+```
+
+Delete a single guide
+```
