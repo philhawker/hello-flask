@@ -36,9 +36,10 @@ Route: localhost:5000/guide
 Method: POST
 Body: 
 {
-    "title": "updated new title",
+    "title": "new title",
     "content": "my new content"
 }
+Content-type: JSON
 ```
 
 Get all guides
