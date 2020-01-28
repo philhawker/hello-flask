@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow    # This library creates structure to the database
+from flask_marshmallow import Marshmallow    # This library creates structure (SCHEMA) to the database
 import os
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ class Guide(db.Model):
         
 class GuideSchema(ma.Schema):
     class Meta:
-        fields = ('title', 'content')
+        fields = ('title', 'content', 'id')
         
 guide_schema = GuideSchema()
 guides_schema = GuideSchema(many=True)   # Schema is a formatting tool from marshmallow. They act as templates for database structure
@@ -44,12 +44,20 @@ def add_guide():
 
     return guide_schema.jsonify(guide)
 
+
 # endpoint to query all guides
 @app.route('/guides', methods=['GET'])
 def get_guides():
     all_guides = Guide.query.all()
     result = guides_schema.dump(all_guides)
     return jsonify(result)
+
+
+# endpoint for querying a single guide
+@app.route('/guide/<id>', methods=['GET'])
+def get_guide(id):
+    guide = Guide.query.get(id)
+    return guide_schema.jsonify(guide)
 
 
 if __name__ == '__main__':
